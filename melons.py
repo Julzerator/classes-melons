@@ -3,8 +3,18 @@
 class Melon(object):
     
     def get_base_price(self):
+        if self.species == "Casaba":
+            return 6
+        elif self.species == "Ogen":
+            return 6
+        else:    
+            return 5
 
-        return 5
+    def check_import(self):
+        if self.imported == True:
+            return 1.5
+        else:
+            return 1
 
 
 
@@ -21,7 +31,7 @@ class WatermelonOrder(Melon):
 
         total = self.get_base_price() * qty   # getting the base total times qty
         if qty >= 3:
-            total = total * .75 # if the customer orders 3 or more, discount 75%
+            total *= 0.75 # if the customer orders 3 or more, discount 75%
 
         return total
 
@@ -38,7 +48,7 @@ class CantaloupeOrder(Melon):
 
         total = self.get_base_price() * qty
         if qty >= 5:
-            total = total * .5 # if the customer orders 5 or more, discount 50%
+            total *= 0.5 # if the customer orders 5 or more, discount 50%
 
         return total
 
@@ -52,8 +62,8 @@ class CasabaOrder(Melon):
     def get_price(self, qty):
         """Calculate price, given a number of Casaba ordered."""
 
-        total = (self.get_base_price() + 1) * qty # Casaba base cost is $1 more.
-        total = total  * 1.5  # imported is 1.5 times the total
+        total = self.get_base_price() * qty # Casaba base cost is $1 more.
+        total *= self.check_import()  # imported is 1.5 times the total
 
         return total
 
@@ -69,7 +79,7 @@ class SharlynOrder(Melon):
         """Calculate price, given a number of Sharlyn ordered."""
 
         total = self.get_base_price() * qty
-        total = total  * 1.5  # imported is 1.5 times the total
+        total *= self.check_import()  # imported is 1.5 times the total
 
         return total
 
@@ -85,7 +95,7 @@ class SantaClauseOrder(Melon):
         """Calculate price, given a number of Santa Clause ordered."""
 
         total = self.get_base_price() * qty
-        total = total  * 1.5  # imported is 1.5 times the total
+        total *= self.check_import()  # imported is 1.5 times the total
 
         return total
 
@@ -116,7 +126,7 @@ class HornedMelonOrder(Melon):
         """Calculate price, given a number of Horned Melon ordered."""
 
         total = self.get_base_price() * qty
-        total = total  * 1.5  # imported is 1.5 times the total
+        total *= self.check_import()  # imported is 1.5 times the total
 
         return total
 
@@ -132,8 +142,8 @@ class XinguaOrder(Melon):
         """Calculate price, given a number of Xingua ordered."""
 
         total = self.get_base_price() * qty  # getting the base total times qty
-        total = total * 1.5 # imported is 1.5 times the total
-        total = total * 2 # square cost 2 times 
+        total *= self.check_import() # imported is 1.5 times the total
+        total *= 2 # square cost 2 times 
 
 
         return total
@@ -148,7 +158,7 @@ class OgenOrder(Melon):
     def get_price(self, qty):
         """Calculate price, given a number of Ogen ordered."""
 
-        total = (self.get_base_price() + 1) * qty # Ogen base cost is $1 more.
-        total = total  * 1.5  # imported is 1.5 times the total
+        total = self.get_base_price() * qty # Ogen base cost is $1 more.
+        total *= self.check_import()  # imported is 1.5 times the total
 
         return total
